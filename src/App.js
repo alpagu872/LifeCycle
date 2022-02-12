@@ -1,25 +1,22 @@
 
-import React, {useEffect,useState}from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  SafeAreaView, StyleSheet, Text, View, Button, 
+  SafeAreaView, StyleSheet, Text, View, Button,
 } from 'react-native';
 
 
 function App() {
 
-  const [number, setNumber] = React.useState(0)
+  const [helloFlag, setHelloFlag] = React.useState(true)
 
-  useEffect(() => {
-    console.log("Number updated " + number);
-  }, [number]);
 
   useEffect(() => {
     console.log("Mounting...")
-  },[])
+  }, [])
 
-  function updateCounter(){
-    setNumber(number +  1)
-  
+  function updateFlag() {
+    setHelloFlag(helloFlag == false);
+    console.log("worked")
   }
 
 
@@ -28,9 +25,9 @@ function App() {
 
       <Text>Hello LifeCycle</Text>
 
-      <Text>Number: {number}</Text>
-      <Button title="Up!" onPress={updateCounter} style={{margin:10}}/>
-      
+      <Text>Number: {helloFlag}</Text>
+      <Button title="Up!" onPress={updateFlag} style={{ margin: 10 }} />
+      {helloFlag && <Hello />}
 
     </SafeAreaView>
   )
@@ -44,3 +41,22 @@ const styles = StyleSheet.create({
 });
 
 export default App;
+
+
+function Hello() {
+  useEffect(() => {
+    
+      console.log("Geldim")
+
+      return () => {console.log("gidiyorum çeşm-i siyahım...")}
+    
+  } , [])
+  return (
+    <View style={{
+      backgroundColor: 'aqua',
+      padding: 10
+    }}>
+      <Text>I'm Hello Component</Text>
+    </View>
+  )
+}
