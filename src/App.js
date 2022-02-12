@@ -8,15 +8,17 @@ import {
 function App() {
 
   const [number, setNumber] = React.useState(0)
-  const [counter, setCounter] = useState(100)
 
   useEffect(() => {
-    console.log("Number updated");
+    console.log("Number updated " + number);
   }, [number]);
 
-  useEffect(() =>{
-    console.log("Counter Updated");
-  }, [counter]);
+  function updateCounter(){
+    console.log("1. State value: " + number);
+    setNumber(number +  1)
+    console.log("2. State value: " + number);
+  }
+
 
   return (
     <SafeAreaView>
@@ -24,10 +26,8 @@ function App() {
       <Text>Hello LifeCycle</Text>
 
       <Text>Number: {number}</Text>
-      <Text>Counter: {counter}</Text>
-      <Button title="Up!" onPress={() => setNumber(number + 1)} style={{margin:10}}/>
+      <Button title="Up!" onPress={updateCounter} style={{margin:10}}/>
       
-      <Button title="Up Counter! " onPress={() => setCounter(counter+100)} style={{padding:10}}/>
 
     </SafeAreaView>
   )
