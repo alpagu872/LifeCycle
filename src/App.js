@@ -13,10 +13,13 @@ function App() {
     console.log("Number updated " + number);
   }, [number]);
 
+  useEffect(() => {
+    console.log("Mounting...")
+  },[])
+
   function updateCounter(){
-    console.log("1. State value: " + number);
     setNumber(number +  1)
-    console.log("2. State value: " + number);
+  
   }
 
 
